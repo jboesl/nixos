@@ -8,8 +8,15 @@
 
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
-    loader.systemd-boot.enable = true;
-    loader.efi.canTouchEfiVariables = true;
+    loader = {
+      efi.canTouchEfiVariables = true;
+      grub.enable = true;
+      grub.device = "/dev/sda5";
+      grub.efiSupport = true;
+      grub.useOSProber = true;
+      grub.gfxmodeEfi = "1920x1080";
+      grub.splashImage = "./Minimalistic-Wallpaper-09.png";
+    };
   };
 
   networking = {
@@ -27,7 +34,7 @@
 
   environment.systemPackages = with pkgs; [
     wget neovim wakelan htop
-    firefox chromium remmina gimp vlc 
+    firefox chromium remmina gimp vlc libreoffice
     git jdk jdk9 maven jetbrains.idea-community
     docker docker_compose
     gnome3.networkmanager_openvpn
@@ -47,6 +54,7 @@
     xserver = {
       enable = true;
       layout = "de";
+      xkbVariant = "neo";
       xkbModel = "pc105";
       xkbOptions = "eurosign:e";
 
@@ -63,7 +71,7 @@
       desktopManager.gnome3.enable = true;
     };
   };
-  
+
   users.users.bo = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" ];
