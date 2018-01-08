@@ -34,7 +34,7 @@
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
-    fish wget neovim wakelan htop 
+    wget neovim wakelan htop
     firefox chromium remmina gimp vlc 
     git jdk jdk9 maven jetbrains.idea-community
     docker docker_compose
@@ -43,10 +43,12 @@
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
-  programs.bash.enableCompletion = true;
-  programs.mtr.enable = true;
-  programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
   programs.fish.enable = true;
+  programs.mtr.enable = true;
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+    };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -66,6 +68,7 @@
       # Enable the X11 windowing system.
       enable = true;
       layout = "de";
+      xkbModel = "pc105";
       xkbOptions = "eurosign:e";
 
       # Enable touchpad support.
@@ -108,10 +111,10 @@
   #   uid = 1000;
   # };
   
-  users.extraUsers.bo = {
+  users.users.bo = {
     isNormalUser = true;
-    home = "/home/bo";
     extraGroups = [ "wheel" "networkmanager" ];
+    shell = pkgs.fish;
   };
 
   # This value determines the NixOS release with which your system is to be
