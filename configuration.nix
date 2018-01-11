@@ -15,7 +15,7 @@
       grub.efiSupport = true;
       grub.useOSProber = true;
       grub.gfxmodeEfi = "1920x1080";
-      grub.splashImage = "./Minimalistic-Wallpaper-09.png";
+      grub.splashImage = "/home/bo/nixos/Minimalistic-Wallpaper-09.png";
     };
   };
 
@@ -72,9 +72,11 @@
     };
   };
 
+  users.mutableUsers = false;
   users.users.bo = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" ];
+    hashedPassword = "$6$CO5LV1JiIQ6pGQ$ZbiYmXZavqm8nF29wkXRE0qCn/RXN9Uw8I5CUEiG8QHKW7iLwiv1xNDo9Bsd0n6gTog0AHZGYU7XBOpWZ9AEk/";
     shell = pkgs.fish;
   };
 
