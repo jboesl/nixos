@@ -33,8 +33,8 @@
   time.timeZone = "Europe/Berlin";
 
   environment.systemPackages = with pkgs; [
-    wget neovim wakelan htop
-    firefox chromium remmina gimp vlc libreoffice
+    wget neovim wakelan htop p7zip
+    chromium remmina gimp vlc libreoffice atom
     git jdk jdk9 maven jetbrains.idea-community
     docker docker_compose
     gnome3.networkmanager_openvpn
