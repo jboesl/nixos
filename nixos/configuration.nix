@@ -10,6 +10,10 @@
 
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
+    kernel.sysctl = {
+      "vm.swappiness" = 15;
+      "vm.min_free_kbytes" = 65536;
+    };
     loader = {
       efi.canTouchEfiVariables = true;
       grub.enable = true;
