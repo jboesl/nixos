@@ -50,7 +50,7 @@
     #oraclejdk9
     maven jetbrains.idea-community
     docker docker_compose
-    gnome3.networkmanager_openvpn gnome3.gnome-bluetooth bluez
+    networkmanager-openvpn openvpn gnome3.gnome-bluetooth bluez
   ];
 
   programs = {
@@ -111,6 +111,6 @@
   # compatible, in order to avoid breaking some software such as database
   # servers. You should change this only after NixOS release notes say you
   # should.
-  system.stateVersion = "18.03"; # Did you read the comment?
+  system.stateVersion = "18.09"; # Did you read the comment?
 
 }
