@@ -50,7 +50,7 @@
     #oraclejdk9
     maven jetbrains.idea-community
     docker docker_compose
-    gnome3.networkmanager_openvpn
+    gnome3.networkmanager_openvpn gnome3.gnome-bluetooth bluez
   ];
 
   programs = {
@@ -85,9 +85,24 @@
   users.mutableUsers = false;
   users.users.bo = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" ];
+    extraGroups = [ "wheel" "networkmanager" "sound" "pulse" "audio" ];
     hashedPassword = "$6$CO5LV1JiIQ6pGQ$ZbiYmXZavqm8nF29wkXRE0qCn/RXN9Uw8I5CUEiG8QHKW7iLwiv1xNDo9Bsd0n6gTog0AHZGYU7XBOpWZ9AEk/";
     shell = pkgs.fish;
+  };
+
+  hardware = {
+    pulseaudio = {
+      enable = true;
+      package = pkgs.pulseaudioFull;
+      support32Bit = true;
+    };
+    bluetooth = {
+      enable = true;
+      extraConfig = "
+        [General]
+        Enable=Source,Sink,Media,Socket
+      ";
+    };
   };
 
   system.autoUpgrade.enable = true;
