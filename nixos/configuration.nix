@@ -43,7 +43,7 @@
 
   environment.systemPackages = with pkgs; [
     wget neovim wakelan htop p7zip keepassx2 ntfs3g
-    google-chrome remmina x2goclient gimp vlc libreoffice atom skype discord
+    google-chrome remmina x2goclient gimp vlc libreoffice atom skype discord steam
     git jdk
     # openjdk9
     oraclejdk8 oraclejdk8psu
@@ -84,6 +84,7 @@
 
   users.mutableUsers = false;
   users.users.bo = {
+    packages = [pkgs.steam];
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "sound" "pulse" "audio" ];
     hashedPassword = "$6$CO5LV1JiIQ6pGQ$ZbiYmXZavqm8nF29wkXRE0qCn/RXN9Uw8I5CUEiG8QHKW7iLwiv1xNDo9Bsd0n6gTog0AHZGYU7XBOpWZ9AEk/";
@@ -91,6 +92,7 @@
   };
 
   hardware = {
+    opengl.driSupport32Bit = true;
     pulseaudio = {
       enable = true;
       package = pkgs.pulseaudioFull;
