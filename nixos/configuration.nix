@@ -42,8 +42,8 @@
   time.timeZone = "Europe/Berlin";
 
   environment.systemPackages = with pkgs; [
-    wget neovim wakelan htop p7zip keepassx2
-    google-chrome remmina gimp vlc libreoffice atom skype discord
+    wget neovim wakelan htop p7zip keepassx2 ntfs3g
+    google-chrome remmina x2goclient gimp vlc libreoffice atom skype discord
     git jdk
     # openjdk9
     oraclejdk8 oraclejdk8psu
