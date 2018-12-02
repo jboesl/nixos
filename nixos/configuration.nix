@@ -6,7 +6,10 @@
     ./hardware-configuration.nix
   ];
 
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+    permittedInsecurePackages = ["oraclejdk-8u172" "oraclejdk-9.0.4"];
+   };
 
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
@@ -41,7 +44,11 @@
   environment.systemPackages = with pkgs; [
     wget neovim wakelan htop p7zip keepassx2
     google-chrome remmina gimp vlc libreoffice atom skype discord
-    git jdk jdk9 oraclejdk8 oraclejdk8psu oraclejdk9 maven jetbrains.idea-community
+    git jdk
+    # openjdk9
+    oraclejdk8 oraclejdk8psu
+    #oraclejdk9
+    maven jetbrains.idea-community
     docker docker_compose
     gnome3.networkmanager_openvpn
   ];
