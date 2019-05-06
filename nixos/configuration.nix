@@ -8,8 +8,7 @@
 
   nixpkgs.config = {
     allowUnfree = true;
-    permittedInsecurePackages = ["oraclejdk-8u172" "oraclejdk-9.0.4"];
-   };
+  };
 
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
@@ -43,11 +42,11 @@
 
   environment.systemPackages = with pkgs; [
     wget neovim wakelan htop p7zip keepassx2 ntfs3g
-    google-chrome remmina x2goclient gimp vlc libreoffice atom skype discord steam
+    krusader kdiff3 krename
+    google-chrome thunderbird gimp vlc libreoffice atom
+    remmina x2goclient
+    skype discord steam
     git jdk
-    # openjdk9
-    oraclejdk8 oraclejdk8psu
-    #oraclejdk9
     maven jetbrains.idea-community
     docker docker_compose
     networkmanager-openvpn openvpn gnome3.gnome-bluetooth bluez
@@ -76,9 +75,8 @@
       synaptics.fingersMap = [ 1 3 2 ];
       synaptics.palmDetect = true;
 
-      displayManager.gdm.enable = true;
-      displayManager.gdm.wayland = true;
-      desktopManager.gnome3.enable = true;
+      displayManager.sddm.enable = true;
+      desktopManager.plasma5.enable = true;
     };
   };
 
@@ -91,28 +89,12 @@
     shell = pkgs.fish;
   };
 
-  hardware = {
-    opengl.driSupport32Bit = true;
-    pulseaudio = {
-      enable = true;
-      package = pkgs.pulseaudioFull;
-      support32Bit = true;
-    };
-    bluetooth = {
-      enable = true;
-      extraConfig = "
-        [General]
-        Enable=Source,Sink,Media,Socket
-      ";
-    };
-  };
-
   system.autoUpgrade.enable = true;
 
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database
   # servers. You should change this only after NixOS release notes say you
   # should.
-  system.stateVersion = "18.09"; # Did you read the comment?
+  system.stateVersion = "19.03"; # Did you read the comment?
 
 }

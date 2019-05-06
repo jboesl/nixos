@@ -28,4 +28,21 @@
 
   nix.maxJobs = lib.mkDefault 8;
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
+
+  hardware = {
+      opengl.enable = true;
+      opengl.driSupport32Bit = true;
+      pulseaudio = {
+        enable = true;
+        package = pkgs.pulseaudioFull;
+        support32Bit = true;
+      };
+      bluetooth = {
+        enable = true;
+        extraConfig = "
+          [General]
+          Enable=Source,Sink,Media,Socket
+        ";
+      };
+    };
 }
